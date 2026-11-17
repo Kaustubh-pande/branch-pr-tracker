@@ -8,6 +8,9 @@ A powerful command-line tool to track and manage pull requests across multiple r
 
 Perfect for managing **multi-repo release workflows**, tracking **feature branches**, or monitoring **hotfix PRs** across your GitHub organization.
 
+![Demo](https://img.shields.io/badge/status-active-success)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+
 ## Table of Contents
 
 - [Features](#features)
@@ -97,6 +100,28 @@ Edit `config.json` to customize for your organization:
 - `pr_patterns` - (Optional) Custom regex patterns for grouping PRs
 
 **Note:** `config.json` is git-ignored. Use `config.example.json` as a template.
+
+## Example Output
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Open Pull Requests - your-organization
+Branches: release-v1.17 release-1.17
+Config: config.json
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 Scanning repositories for open PRs...
+
+  # | Repository                    |   PR | Title                                | Link
+----|-------------------------------|------|--------------------------------------|----------
+  1 | your-org/api-server           | 1234 | Fix authentication bug               | https://...
+  2 | your-org/web-ui               |  567 | Update dependencies                  | https://...
+  3 | your-org/database             |  890 | Add migration for new schema         | https://...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Found 3 open PRs
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
 
 ## Scripts
 
