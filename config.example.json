@@ -1,0 +1,27 @@
+{
+  "organization": "your-org-name",
+  "repositories": [
+    "repo-1",
+    "repo-2",
+    "repo-3"
+  ],
+  "default_branches": [
+    "main",
+    "develop",
+    "release-v1.0"
+  ],
+  "pr_patterns": {
+    "dependency": {
+      "regex": "Bump|bump|\\[deps\\]",
+      "label": "Dependency Updates"
+    },
+    "feature": {
+      "regex": "^feat:|Feature",
+      "label": "Features"
+    },
+    "bugfix": {
+      "regex": "^fix:|Fix",
+      "label": "Bug Fixes"
+    }
+  }
+}
