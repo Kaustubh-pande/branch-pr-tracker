@@ -1,0 +1,41 @@
+name: Validate
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          severity: warning
+
+  validate-config:
+    name: Validate Config Example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON
+        run: |
+          if ! jq empty config.example.json 2>/dev/null; then
+            echo "Invalid JSON in config.example.json"
+            exit 1
+          fi
+          echo "✅ config.example.json is valid JSON"
+
+      - name: Check required fields
+        run: |
+          jq -e '.organization' config.example.json > /dev/null
+          jq -e '.repositories' config.example.json > /dev/null
+          jq -e '.default_branches' config.example.json > /dev/null
+          echo "✅ All required fields present"
