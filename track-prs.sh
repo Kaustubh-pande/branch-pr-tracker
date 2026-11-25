@@ -71,8 +71,18 @@ fi
 
 # Read config using jq
 ORG=$(jq -r '.organization' "$CONFIG_FILE")
-mapfile -t TARGET_REPOS < <(jq -r '.repositories[]' "$CONFIG_FILE")
-mapfile -t DEFAULT_BRANCHES < <(jq -r '.default_branches[]' "$CONFIG_FILE")
+
+# Read repositories (Bash 3.2 compatible)
+TARGET_REPOS=()
+while IFS= read -r line; do
+    TARGET_REPOS+=("$line")
+done < <(jq -r '.repositories[]' "$CONFIG_FILE")
+
+# Read default branches (Bash 3.2 compatible)
+DEFAULT_BRANCHES=()
+while IFS= read -r line; do
+    DEFAULT_BRANCHES+=("$line")
+done < <(jq -r '.default_branches[]' "$CONFIG_FILE")
 
 # Use provided branches or defaults from config
 if [ ${#BRANCHES_ARG[@]} -eq 0 ]; then
